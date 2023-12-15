@@ -5,7 +5,7 @@
         id="main"
         href="/"
         class="text-[32px] font-['Montserrat'] font-medium ml-40"
-        >Malumotlar</a
+        >Ma'lumotlar</a
       >
       <div id="div" class="mr-40 flex">
         <el-input
@@ -13,8 +13,13 @@
           placeholder="Nima haqida malumot izlayapsiz?"
           class="olmaxon"
         />
-        <el-button id="qidirish" type="primary">Qidirish</el-button>
-        <el-button id="kategory" type="primary" class="text-white border-none"
+        <el-button id="qidirish" type="primary" class="font-['Montserrat']"
+          >Qidirish</el-button
+        >
+        <el-button
+          id="kategory"
+          type="primary"
+          class="text-white border-none font-['Montserrat']"
           >Kategoriyalar</el-button
         >
       </div>
@@ -25,7 +30,10 @@
         placeholder="Nima haqida malumot izlayapsiz?"
         class="w-60"
       />
-      <el-button id="qidirish2" type="primary" class="text-black"
+      <el-button
+        id="qidirish2"
+        type="primary"
+        class="text-black font-['Montserrat']"
         >Qidirish</el-button
       >
     </div>

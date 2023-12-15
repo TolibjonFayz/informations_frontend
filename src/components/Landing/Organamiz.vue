@@ -10,8 +10,7 @@
       <el-button
         id="qidirish"
         type="primary"
-        class="text-white px-4 py-2 w-40 mt-10"
-        round
+        class="text-white px-4 py-2 w-40 mt-10 font-['Montserrat']"
         >Qidirish</el-button
       >
     </div>
@@ -20,7 +19,7 @@
         id="image"
         src="../../assets/firstimg.jpg"
         alt="Library"
-        class="w-80 rounded-md ml-20"
+        class="w-80 rounded ml-20"
       />
     </div>
   </div>
