@@ -7,12 +7,14 @@
       <h2 id="boshladik" class="font-['Montserrat'] text-[24px]">
         Boshladikmi 🙂 ?
       </h2>
-      <el-button
-        id="qidirish"
-        type="primary"
-        class="text-white px-4 py-2 w-40 mt-10 font-['Montserrat']"
-        >Qidirish</el-button
-      >
+      <a href="/category">
+        <el-button
+          id="qidirish"
+          type="primary"
+          class="text-white px-4 py-2 w-40 mt-10 font-['Montserrat']"
+          >Qidirish</el-button
+        >
+      </a>
     </div>
     <div class="second w-[50%] flex justify-center items-center">
       <img

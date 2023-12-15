@@ -9,9 +9,14 @@
         qiziqishlaringizga mos maqolalar mavjud. Bizning jamoamiz noyob va
         qiziqarli kontentni taqdim etish uchun astoydil ishlaydi.
       </h3>
-      <el-button id="kashf" type="primary" class="font-['Montserrat'] mt-8 w-52"
-        >Kashf qilishni boshlang</el-button
-      >
+      <a href="/category">
+        <el-button
+          id="kashf"
+          type="primary"
+          class="font-['Montserrat'] mt-8 w-52"
+          >Kashf qilishni boshlang</el-button
+        >
+      </a>
     </div>
     <div class="second w-[50%] flex justify-center items-center">
       <img

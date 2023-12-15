@@ -2,11 +2,12 @@
   <div class="exe pb-5">
     <div class="flex gap-5 items-center justify-between mt-3">
       <a
-        id="main"
         href="/"
+        id="main"
         class="text-[32px] font-['Montserrat'] font-medium ml-40"
-        >Ma'lumotlar</a
       >
+        Ma'lumotlar
+      </a>
       <div id="div" class="mr-40 flex">
         <el-input
           v-model="search"
@@ -16,14 +17,6 @@
         <el-button id="qidirish" type="primary" class="font-['Montserrat']"
           >Qidirish</el-button
         >
-        <a href="/category">
-          <el-button
-            id="kategory"
-            type="primary"
-            class="text-white border-none font-['Montserrat'] ml-5"
-            >Kategoriyalar</el-button
-          >
-        </a>
       </div>
     </div>
     <div class="hidden justify-between items-center ml-5 mr-5 mt-2">
