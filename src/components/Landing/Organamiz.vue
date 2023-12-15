@@ -9,8 +9,8 @@
       </h2>
       <el-button
         id="qidirish"
-        type="warning"
-        class="text-white bg-global px-4 py-2 w-40 mt-10"
+        type="primary"
+        class="text-white px-4 py-2 w-40 mt-10"
         round
         >Qidirish</el-button
       >
@@ -20,7 +20,7 @@
         id="image"
         src="../../assets/firstimg.jpg"
         alt="Library"
-        class="w-80 rounded-md"
+        class="w-80 rounded-md ml-20"
       />
     </div>
   </div>

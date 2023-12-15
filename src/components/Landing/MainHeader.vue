@@ -7,22 +7,25 @@
         class="text-[32px] font-['Montserrat'] font-medium ml-40"
         >Malumotlar</a
       >
-      <div id="div" class="mr-40">
-        <el-input v-model="search" placeholder="Olmaxon" class="olmaxon w-60" />
-        <el-button id="qidirish" type="warning" class="text-black"
-          >Qidirish</el-button
-        >
-        <el-button
-          id="kategory"
-          type="warning"
-          class="bg-[#BA8D56] text-white border-none"
+      <div id="div" class="mr-40 flex">
+        <el-input
+          v-model="search"
+          placeholder="Nima haqida malumot izlayapsiz?"
+          class="olmaxon"
+        />
+        <el-button id="qidirish" type="primary">Qidirish</el-button>
+        <el-button id="kategory" type="primary" class="text-white border-none"
           >Kategoriyalar</el-button
         >
       </div>
     </div>
     <div class="hidden justify-between items-center ml-5 mr-5 mt-2">
-      <el-input v-model="search" placeholder="Olmaxon" class="w-60" />
-      <el-button id="qidirish2" type="warning" class="text-black"
+      <el-input
+        v-model="search"
+        placeholder="Nima haqida malumot izlayapsiz?"
+        class="w-60"
+      />
+      <el-button id="qidirish2" type="primary" class="text-black"
         >Qidirish</el-button
       >
     </div>
@@ -35,6 +38,19 @@ const search = ref("");
 </script>
 
 <style lang="scss" scoped>
+.olmaxon {
+  width: 250px;
+}
+#qidirish2 {
+  padding: 8px 12px;
+  font-size: 12px;
+}
+#qidirish {
+  border: none;
+}
+#kategory {
+  border: none;
+}
 .exe {
   box-shadow: 1px 2px 3px 0.5px rgb(212, 212, 212);
 }
