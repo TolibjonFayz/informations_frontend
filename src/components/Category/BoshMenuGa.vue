@@ -6,26 +6,30 @@
     <h2 class="text-[20px] mt-3 font-['Montserrat'] font-medium">
       Kategoriyalar
     </h2>
-    <div id="div" class="flex w-full flex-wrap justify-between mt-3 pr-5">
-      <Button></Button>
-      <Button></Button>
-      <Button></Button>
-      <Button></Button>
-      <Button></Button>
-      <Button></Button>
-      <Button></Button>
-      <Button></Button>
-      <Button></Button>
-      <Button></Button>
+    <div id="div" class="flex w-full flex-wrap justify-between mt-3">
+      <Button v-for="(item, index) in store.categories" :key="index">
+        {{ item.name }}
+      </Button>
     </div>
   </div>
 </template>
 
 <script setup>
 import Button from "../ui/Button.vue";
+import { useCategoryStore } from "../../stores/category";
+import { onMounted } from "vue";
+
+const store = useCategoryStore();
+
+onMounted(async () => {
+  await store.getCategories();
+});
 </script>
 
 <style lang="scss" scoped>
+#div {
+  margin-left: -18px;
+}
 #main {
   h1 {
     color: #737373;
@@ -33,11 +37,11 @@ import Button from "../ui/Button.vue";
 }
 
 @media screen and (max-width: 500px) {
-#main{
-  margin-left: 20px;
-}
-#div{
-  margin-left: -15px;
-}
+  #main {
+    margin-left: 20px;
+  }
+  #div {
+    margin-left: -15px;
+  }
 }
 </style>

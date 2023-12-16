@@ -89,7 +89,7 @@
 }
 
 @media screen and (max-width: 700px) {
-  #in{
+  #in {
     flex-direction: column;
   }
   #blog {
