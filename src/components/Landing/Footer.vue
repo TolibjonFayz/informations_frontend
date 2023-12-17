@@ -11,7 +11,12 @@
     </div>
 
     <div id="second" class="mr-16 flex flex-col items-end">
-      <h1 class="text-[14px] font-['Montserrat'] font-medium">Yordam</h1>
+      <h1
+        @click="pusher()"
+        class="text-[14px] font-['Montserrat'] font-medium cursor-pointer"
+      >
+        Biz haqimizda
+      </h1>
       <h3 class="text-[14px] font-['Montserrat'] mt-10">
         Biz bilan bog'lanish
       </h3>
@@ -20,7 +25,12 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import router from "../../router/index.js";
+const pusher = () => {
+  router.push({ name: "about" });
+};
+</script>
 
 <style lang="scss" scoped>
 #main {

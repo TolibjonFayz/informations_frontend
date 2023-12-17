@@ -1,13 +1,9 @@
 <template>
   <div class="exe pb-5">
     <div class="flex gap-5 items-center justify-between mt-3">
-      <a
-        href="/"
-        id="main"
-        class="text-[32px] font-['Montserrat'] font-medium ml-20"
-      >
+      <h1 id="main" class="text-[32px] font-['Montserrat'] font-medium ml-20">
         Qidiruv
-      </a>
+      </h1>
     </div>
   </div>
 </template>

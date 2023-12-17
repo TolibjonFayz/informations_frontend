@@ -52,6 +52,10 @@ function formatDate(dateString) {
 </script>
 
 <style lang="scss" scoped>
+#blog {
+  box-shadow: 2px 2px 2px 2px rgb(212, 212, 212);
+}
+
 @media screen and (max-width: 600px) {
   #blog {
     flex-direction: column;
