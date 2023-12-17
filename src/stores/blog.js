@@ -59,7 +59,5 @@ export const useBlogStore = defineStore({
         console.log(error);
       }
     },
-
-    // searchBlogsQuery
   },
 });

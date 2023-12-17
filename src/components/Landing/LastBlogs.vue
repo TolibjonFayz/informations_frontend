@@ -12,61 +12,56 @@
       oling.
     </h5>
     <div id="in" class="flex justify-center items-center w-[70%] gap-10">
-      <div id="blog" class="flex w-[30%] flex-col gap-5 rounded-xl">
-        <img
-          src="https://th.bing.com/th/id/OIP.wLrlOoeKg8A1INd9O0zfWwHaFF?rs=1&pid=ImgDetMain"
-          alt="squirrel"
-          class="rounded-xl"
-        />
+      <div
+        v-for="(item, index) in result"
+        :key="index"
+        id="blog"
+        class="flex w-[30%] flex-col gap-5 rounded-xl"
+      >
+        <img :src="item.picture[0].img_url" alt="squirrel" class="rounded-xl" />
         <h1 class="ml-5 text-[24px] font-['Montserrat'] font-normal">
-          Squirrels
+          {{ item.title }}
         </h1>
         <h2 class="ml-5 text-[18px] font-['Montserrat']">
-          Squirrels are exciting. In the summer, they run around right after the
-          sun comes up. In the afternoon, the squirrels go back to their nests.
-          They take naps.
+          {{ item.body.slice(0, 150) }}
         </h2>
-        <a href="/" class="mb-5 ml-5 text-[18px] font-medium">Ko'proq...</a>
-      </div>
-
-      <div id="blog" class="flex w-[30%] flex-col gap-5 rounded-xl">
-        <img
-          src="https://th.bing.com/th/id/OIP.wLrlOoeKg8A1INd9O0zfWwHaFF?rs=1&pid=ImgDetMain"
-          alt="squirrel"
-          class="rounded-xl"
-        />
-        <h1 class="ml-5 text-[24px] font-['Montserrat'] font-normal">
-          Squirrels
-        </h1>
-        <h2 class="ml-5 text-[18px] font-['Montserrat']">
-          Squirrels are exciting. In the summer, they run around right after the
-          sun comes up. In the afternoon, the squirrels go back to their nests.
-          They take naps.
-        </h2>
-        <a href="/" class="mb-5 ml-5 text-[18px] font-medium">Ko'proq...</a>
-      </div>
-
-      <div id="blog" class="flex w-[30%] flex-col gap-5 rounded-xl">
-        <img
-          src="https://th.bing.com/th/id/OIP.wLrlOoeKg8A1INd9O0zfWwHaFF?rs=1&pid=ImgDetMain"
-          alt="squirrel"
-          class="rounded-xl"
-        />
-        <h1 class="ml-5 text-[24px] font-['Montserrat'] font-normal">
-          Squirrels
-        </h1>
-        <h2 class="ml-5 text-[18px] font-['Montserrat']">
-          Squirrels are exciting. In the summer, they run around right after the
-          sun comes up. In the afternoon, the squirrels go back to their nests.
-          They take naps.
-        </h2>
-        <a href="/" class="mb-5 ml-5 text-[18px] font-medium">Ko'proq...</a>
+        <h1 @click="goSinglePage(item.id)" class="mb-5 ml-5 text-[18px] font-medium cursor-pointer">Ko'proq...</h1>
       </div>
     </div>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { onMounted, ref } from "vue";
+import { useBlogStore } from "../../stores/blog";
+import router from "../../router/index.js";
+
+const goSinglePage = async (id) => {
+  await router.push(`/blog/${id}`);
+};
+
+const store = useBlogStore();
+
+function getLatestRecords(data) {
+  let counter = 0;
+  const latestRecords = [];
+
+  for (let i = data.length - 1; i >= 0; i--) {
+    latestRecords.push(data[i]);
+    counter++;
+    if (counter === 3) {
+      break;
+    }
+  }
+  return latestRecords;
+}
+
+const result = ref("");
+onMounted(async () => {
+  const res = await store.getBlogs();
+  result.value = getLatestRecords(res);
+});
+</script>
 
 <style lang="scss" scoped>
 #blog {

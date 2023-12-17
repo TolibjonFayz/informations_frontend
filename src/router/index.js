@@ -3,6 +3,7 @@ import MainPageVue from "../pages/MainPage.vue";
 import KategoryPageVue from "../pages/KategoryPage.vue";
 import SearchPageVue from "../pages/SearchPage.vue";
 import AboutPageVue from "../pages/AboutPage.vue";
+import SinglePageVue from "../pages/SinglePage.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -26,6 +27,11 @@ const router = createRouter({
       path: "/about",
       name: "about",
       component: AboutPageVue,
+    },
+    {
+      path: "/blog/:id",
+      name: "singlepage",
+      component: SinglePageVue,
     },
   ],
 });
