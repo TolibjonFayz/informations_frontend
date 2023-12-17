@@ -1,7 +1,13 @@
 <template>
-  <div>Search page</div>
+  <div>
+    <SearchHeader />
+    <SearchFilter />
+  </div>
 </template>
 
-<script setup></script>
+<script setup>
+import SearchHeader from "../components/Search/SearchHeader.vue";
+import SearchFilter from "../components/Search/SearchFilter.vue";
+</script>
 
 <style lang="scss" scoped></style>

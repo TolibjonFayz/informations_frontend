@@ -2,8 +2,8 @@
   <div id="blog" class="flex w-[18%] justify-between flex-col gap-3 p-2">
     <img :src="props.image" alt="Blog image" class="rounded" />
     <div>
-      <h1 class="font-['Montserrat'] text-[14px]">{{ props.name }}</h1>
-      <a href="#" class="font-['Montserrat'] text-[18px] font-medium"
+      <h1 class="font-['Montserrat'] text-[18px] mb-2">{{ props.name }}</h1>
+      <a href="#" class="font-['Montserrat'] text-[15px] font-medium"
         >Ko'proq...</a
       >
     </div>

@@ -7,6 +7,7 @@ export const useBlogStore = defineStore({
     blogs: [],
     blog: "",
     searched: [],
+    searchedquery: [],
     cat: [],
   }),
   actions: {
@@ -48,5 +49,17 @@ export const useBlogStore = defineStore({
         console.log(error);
       }
     },
+
+    async searchBlogsQuery(payload) {
+      try {
+        let res = await blog.searchBlogsQuery(payload);
+        this.searchedquery = res;
+        return res;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+
+    // searchBlogsQuery
   },
 });

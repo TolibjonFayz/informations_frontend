@@ -17,6 +17,10 @@ const blog = {
     const url = `blog/search`;
     return axiosClient.post(url, payload);
   },
+  searchBlogsQuery(payload) {
+    const url = `blog/searchquery`;
+    return axiosClient.post(url, payload);
+  },
 };
 
 export default blog;

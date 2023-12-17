@@ -1,6 +1,9 @@
 <template>
   <div id="main" class="flex flex-col mt-10 ml-10">
-    <a href="/" class="text-[16px] cursor-pointer">
+    <a
+      href="/"
+      class="text-[16px] cursor-pointer font-['Montserrat'] text-[#737373]"
+    >
       <i class="fa-solid fa-chevron-left mr-1"></i>Bosh menu
     </a>
     <h2 class="text-[20px] mt-3 font-['Montserrat'] font-medium">
@@ -33,7 +36,6 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
 import Button from "../ui/Button.vue";
 import { useCategoryStore } from "../../stores/category";
 import { useBlogStore } from "../../stores/blog";
@@ -54,11 +56,6 @@ onMounted(async () => {
 <style lang="scss" scoped>
 #div {
   margin-left: -18px;
-}
-#main {
-  a {
-    color: #737373;
-  }
 }
 
 @media screen and (max-width: 500px) {
