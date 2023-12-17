@@ -16,16 +16,16 @@
         <el-button id="qidirish" type="primary" class="font-['Montserrat']"
           >Qidirish</el-button
         >
-        <a href="/category">
-          <el-button
-            id="kategory"
-            type="primary"
-            class="text-white border-none font-['Montserrat'] ml-5"
-            >Kategoriyalar</el-button
-          >
-        </a>
+        <el-button
+          id="kategory"
+          type="primary"
+          class="text-white border-none font-['Montserrat'] ml-5"
+          @click="pusher()"
+          >Kategoriyalar</el-button
+        >
       </div>
     </div>
+    <!-- Hidden for phone -->
     <div class="hidden justify-between items-center ml-5 mr-5 mt-2">
       <el-input
         v-model="search"
@@ -39,12 +39,51 @@
         >Qidirish</el-button
       >
     </div>
+
+    <!-- Search -->
+    <div
+      id="search"
+      v-if="isopen"
+      class="w-[250px] transition-transform category text-white bg-[#1E90FF] absolute top-[55px] right-[381px] h-auto rounded p-3"
+    >
+      <a
+        v-for="(item, index) in store.searched"
+        :key="index"
+        class="flex cursor-pointer p-2 hover:bg-[#87CEFA] transition-all rounded"
+        @click="single(item.title)"
+      >
+        {{ item.title }}
+      </a>
+    </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { onMounted, ref, watch } from "vue";
+import router from "../../router/index.js";
+import { useBlogStore } from "../../stores/blog";
+const store = useBlogStore();
+
 const search = ref("");
+const pusher = () => {
+  router.push({ name: "category" });
+};
+
+const isopen = ref(false);
+
+onMounted(() => {
+  watch(search, (value) => {
+    const payload = {
+      text: search.value,
+    };
+    if (value != "") {
+      isopen.value = true;
+      store.searchBlogs(payload);
+    } else {
+      isopen.value = false;
+    }
+  });
+});
 </script>
 
 <style lang="scss" scoped>
@@ -80,6 +119,10 @@ const search = ref("");
     padding: 8px 12px;
     font-size: 12px;
   }
+  #search {
+    // top-[55px] right-[381px]
+    right: 208px;
+  }
 }
 
 @media screen and (max-width: 600px) {
@@ -91,6 +134,48 @@ const search = ref("");
   }
   .hidden {
     display: flex;
+  }
+  #search {
+    top: 90px;
+    right: 220px;
+  }
+}
+@media screen and (max-width: 500px) {
+  #search {
+    right: 150px;
+  }
+}
+
+@media screen and (max-width: 430px) {
+  #search {
+    right: 100px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  #search {
+    width: 220px;
+    right: 120px;
+  }
+}
+@media screen and (max-width: 380px) {
+  #search {
+    right: 100px;
+    a {
+      font-size: 13px;
+      padding: 5px;
+    }
+  }
+}
+
+@media screen and (max-width: 350px) {
+  #search {
+    right: 100px;
+    width: 200px;
+    a {
+      font-size: 13px;
+      padding: 5px;
+    }
   }
 }
 </style>

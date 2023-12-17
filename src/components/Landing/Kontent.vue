@@ -9,14 +9,13 @@
         qiziqishlaringizga mos maqolalar mavjud. Bizning jamoamiz noyob va
         qiziqarli kontentni taqdim etish uchun astoydil ishlaydi.
       </h3>
-      <a href="/category">
-        <el-button
-          id="kashf"
-          type="primary"
-          class="font-['Montserrat'] mt-8 w-52"
-          >Kashf qilishni boshlang</el-button
-        >
-      </a>
+      <el-button
+        @click="pusher()"
+        id="kashf"
+        type="primary"
+        class="font-['Montserrat'] mt-8 w-52"
+        >Kashf qilishni boshlang</el-button
+      >
     </div>
     <div class="second w-[50%] flex justify-center items-center">
       <img
@@ -29,7 +28,12 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import router from "../../router/index.js";
+const pusher = () => {
+  router.push({ name: "category" });
+};
+</script>
 
 <style lang="scss" scoped>
 @media screen and (max-width: 1000px) {

@@ -7,14 +7,13 @@
       <h2 id="boshladik" class="font-['Montserrat'] text-[24px]">
         Boshladikmi 🙂 ?
       </h2>
-      <a href="/category">
-        <el-button
-          id="qidirish"
-          type="primary"
-          class="text-white px-4 py-2 w-40 mt-10 font-['Montserrat']"
-          >Qidirish</el-button
-        >
-      </a>
+      <el-button
+        id="qidirish"
+        type="primary"
+        class="text-white px-4 py-2 w-40 mt-10 font-['Montserrat']"
+        @click="pusher()"
+        >Qidirish</el-button
+      >
     </div>
     <div class="second w-[50%] flex justify-center items-center">
       <img
@@ -27,7 +26,12 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import router from "../../router/index.js";
+const pusher = () => {
+  router.push({ name: "category" });
+};
+</script>
 
 <style lang="scss" scoped>
 #qidirish {

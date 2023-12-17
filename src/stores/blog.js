@@ -6,6 +6,7 @@ export const useBlogStore = defineStore({
   state: () => ({
     blogs: [],
     blog: "",
+    searched: [],
   }),
   actions: {
     async getBlogs() {
@@ -17,13 +18,24 @@ export const useBlogStore = defineStore({
         console.log(error);
       }
     },
-  },
-  async getBlogById(id) {
-    try {
-      let res = await blog.getBlogById(id);
-      this.blog = res;
-    } catch (error) {
-      console.log(error);
-    }
+    async getBlogById(id) {
+      try {
+        let res = await blog.getBlogById(id);
+        this.blog = res;
+        return res;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+
+    async searchBlogs(payload) {
+      try {
+        let res = await blog.searchBlogs(payload);
+        this.searched = res;
+        return res;
+      } catch (error) {
+        console.log(error);
+      }
+    },
   },
 });

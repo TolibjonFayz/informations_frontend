@@ -9,6 +9,10 @@ const blog = {
     const url = `blog/${id}`;
     return axiosClient.get(url);
   },
+  searchBlogs(payload) {
+    const url = `blog/search`;
+    return axiosClient.post(url, payload);
+  },
 };
 
 export default blog;
