@@ -1,5 +1,5 @@
 <template>
-  <div id="blog" class="flex w-[20%] justify-between flex-col gap-3 p-2">
+  <div id="blog" class="flex w-[18%] justify-between flex-col gap-3 p-2">
     <img :src="props.image" alt="Blog image" class="rounded" />
     <div>
       <h1 class="font-['Montserrat'] text-[14px]">{{ props.name }}</h1>
@@ -25,5 +25,16 @@ const props = defineProps({
 #blog {
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+@media screen and (max-width: 860px) {
+  #blog {
+    width: 30%;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  #blog {
+    width: 45%;
+  }
 }
 </style>

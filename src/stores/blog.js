@@ -7,6 +7,7 @@ export const useBlogStore = defineStore({
     blogs: [],
     blog: "",
     searched: [],
+    cat: [],
   }),
   actions: {
     async getBlogs() {
@@ -22,6 +23,16 @@ export const useBlogStore = defineStore({
       try {
         let res = await blog.getBlogById(id);
         this.blog = res;
+        return res;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+
+    async getBlogByCatId(id) {
+      try {
+        let res = await blog.getBlogByCatId(id);
+        this.cat = res;
         return res;
       } catch (error) {
         console.log(error);

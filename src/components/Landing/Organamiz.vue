@@ -11,7 +11,7 @@
         id="qidirish"
         type="primary"
         class="text-white px-4 py-2 w-40 mt-10 font-['Montserrat']"
-        @click="pusher()"
+        @click="pushers()"
         >Qidirish</el-button
       >
     </div>
@@ -30,6 +30,9 @@
 import router from "../../router/index.js";
 const pusher = () => {
   router.push({ name: "category" });
+};
+const pushers = () => {
+  router.push({ name: "search" });
 };
 </script>
 

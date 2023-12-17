@@ -2,12 +2,16 @@
   <CategoryHeader />
   <BoshMenuGa />
   <Top5Blog />
+  <ForYou />
+  <Footer />
 </template>
 
 <script setup>
 import CategoryHeader from "../components/Category/CategoryHeader.vue";
 import BoshMenuGa from "../components/Category/BoshMenuGa.vue";
 import Top5Blog from "../components/Category/Top5Blog.vue";
+import ForYou from "../components/Category/ForYou.vue";
+import Footer from "../components/Landing/Footer.vue";
 </script>
 
 <style lang="scss" scoped></style>

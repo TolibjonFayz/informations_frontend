@@ -1,7 +1,8 @@
 <template>
-  <div id="main" class="mt-10 ml-11">
+  <div id="main" class="mt-10 ml-11 mb-10">
     <h1 class="text-[20px] font-medium font-['Montserrat'] mb-5">
-      Top 5 Bloglar
+      Siz uchun tavsiyalar
+      <i class="fa-solid fa-fire" style="color: #ffbb00"></i>
     </h1>
     <div class="flex mr-8 flex-wrap justify-center gap-5">
       <Blog
