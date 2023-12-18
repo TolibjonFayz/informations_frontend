@@ -1,9 +1,9 @@
 <template>
-  <div v-if="store.blog">
+  <div id="main" v-if="store.blog">
     <a href="/" class="font-['Montserrat'] text-[30px] m-10 font-medium"
       >Ma'lumotlar</a
     >
-    <div id="main" class="flex flex-col gap-10 items-center">
+    <div id="main-in" class="flex flex-col gap-10 items-center">
       <h1 class="text-[50px] font-['Montserrat'] font-medium mt-10">
         {{ store.blog.title }}
       </h1>
@@ -12,12 +12,12 @@
         alt="Blog image"
         class="w-[500px] rounded"
       />
-      <h1 class="w-[90%] text-[26px]">
+      <h2 class="w-[90%] text-[26px]">
         {{ store.blog.body }}
-      </h1>
+      </h2>
     </div>
   </div>
-  <div class="flex justify-between ml-20 mr-20 mt-10 mb-10">
+  <div id="second" class="flex justify-between ml-20 mr-20 mt-10 mb-10">
     <h4 class="font-['Montserrat'] text-[20px]">
       Manba: {{ store.blog.source }}
     </h4>
@@ -39,4 +39,25 @@ onMounted(async () => {
 });
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+@media screen and (max-width: 550px) {
+  #main {
+    text-align: center;
+  }
+  #main-in {
+    h1 {
+      font-size: 36px;
+    }
+    h2 {
+      font-size: 16px;
+    }
+  }
+  #second {
+    margin-left: 30px;
+    margin-right: 30px;
+    h4 {
+      font-size: 16px;
+    }
+  }
+}
+</style>
