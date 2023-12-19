@@ -51,7 +51,7 @@
       >Tizimga kirish</el-button
     >
     <a href="/signup" class="text-[12px] font-['Montserrat'] mt-8">
-      Hisobingiz yo'qmi? Hozir roʻyxatdan oʻting!
+      Hisobingiz yo'qmi? Hoziroq roʻyxatdan oʻting!
     </a>
   </div>
 </template>
