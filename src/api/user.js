@@ -17,6 +17,10 @@ const user = {
     const url = `user/update/${id}`;
     return axiosClient.post(url, payload);
   },
+  getAllUsers() {
+    const url = "user/all";
+    return axiosClient.get(url);
+  },
 };
 
 export default user;

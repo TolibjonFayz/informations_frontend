@@ -21,19 +21,113 @@
     <h4 class="font-['Montserrat'] text-[20px]">
       Manba: {{ store.blog.source }}
     </h4>
-    <i class="fa-regular fa-bookmark cursor-pointer"></i>
+    <div class="flex gap-10">
+      <h5 class="flex gap-2">
+        <i class="fa-solid fa-eye mt-1"></i>{{ store.blog.views }}
+      </h5>
+
+      <i
+        v-if="getCookie(store.blog.title)"
+        class="fa-solid fa-bookmark cursor-pointer mt-1"
+        @click="deleteCookie(store.blog.title)"
+      ></i>
+      <i
+        v-else
+        class="fa-regular fa-bookmark cursor-pointer mt-1"
+        @click="setCookie(store.blog.title, store.blog.id)"
+      ></i>
+    </div>
   </div>
+  <a
+    href="/"
+    class="flex justify-center items-center text-[16px] cursor-pointer font-['Montserrat'] text-[#737373] mb-10"
+  >
+    <i class="fa-solid fa-chevron-left mr-1"></i>Bosh menu
+  </a>
   <Footer />
+  <el-dialog
+    v-model="dialogVisible"
+    title="Ro'yxatdan o'tilmagan"
+    width="30%"
+    :before-close="handleClose"
+  >
+    <span
+      >Blogni saqlab qo'yishingiz uchun saytdan ro'yxatdan o'tishingiz
+      kerak</span
+    >
+    <template #footer>
+      <span class="dialog-footer">
+        <el-button @click="dialogVisible = false">Bekor qilish</el-button>
+        <el-button type="primary" @click="goToSignUp()">
+          Ro'yxatdan o'tish
+        </el-button>
+      </span>
+    </template>
+  </el-dialog>
 </template>
 
 <script setup>
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
 import { useBlogStore } from "../stores/blog";
 import Footer from "../components/Landing/Footer.vue";
 import { useRoute } from "vue-router";
-const route = useRoute();
+import { useSavedStore } from "../stores/saved";
+import { ElMessageBox } from "element-plus";
+import router from "../router";
 
 const store = useBlogStore();
+const savedStore = useSavedStore();
+const route = useRoute();
+const dialogVisible = ref(false);
+
+const handleClose = (done) => {
+  ElMessageBox.confirm("Are you sure to close this dialog?")
+    .then(() => {
+      done();
+    })
+    .catch(() => {
+      // catch error
+    });
+};
+
+function getCookie(name) {
+  const cookieString = document.cookie;
+  const cookies = cookieString.split("; ");
+  for (const cookie of cookies) {
+    const [cookieName, cookieValue] = cookie.split("=");
+    if (cookieName === name || cookieValue == name) {
+      return true;
+    }
+  }
+  return false;
+}
+
+function deleteCookie(cookieName) {
+  document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+  location.reload();
+}
+
+async function setCookie(name, blog_id) {
+  const user_id = localStorage.getItem("userid");
+  if (!user_id) {
+    dialogVisible.value = true;
+  } else {
+    const expires = new Date();
+    expires.setDate(expires.getDate() + 365);
+    document.cookie = `${name}=${name}; expires=${expires.toUTCString()}; path=/`;
+    const payload = {
+      user_id: Number(user_id),
+      blog_id: blog_id,
+    };
+    await savedStore.createSaved(payload);
+    location.reload();
+  }
+}
+
+const goToSignUp = () => {
+  router.push({ name: "signup" });
+};
+
 onMounted(async () => {
   await store.getBlogById(route.params.id);
 });

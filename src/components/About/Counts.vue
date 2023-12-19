@@ -1,7 +1,10 @@
 <template>
-  <div id="main" class="flex justify-around items-center text-center flex-wrap mb-14">
+  <div
+    id="main"
+    class="flex justify-around items-center text-center flex-wrap mb-14"
+  >
     <h1 class="p-5">
-      50+
+      {{ blogcounter }}+
       <h2>Chop etilgan bloglar</h2>
     </h1>
 
@@ -11,18 +14,42 @@
     </h1>
 
     <h1 class="p-5">
-      500+
+      {{ viewscounter }}+
       <h2>Barcha vaqt o'qishlar soni</h2>
     </h1>
 
     <h1 class="p-5">
-      3+
+      {{ userCounter }}+
       <h2>Mamnun o'quvchilar</h2>
     </h1>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { onMounted, ref } from "vue";
+import { useBlogStore } from "../../stores/blog";
+import { useUserStore } from "../../stores/user";
+
+const store = useBlogStore();
+const userStore = useUserStore();
+const viewscounter = ref(0);
+const blogcounter = ref(0);
+const userCounter = ref(0);
+
+onMounted(async () => {
+  const blogs = await store.getBlogs();
+  const users = await userStore.getAllUsers();
+
+  blogs.forEach((e) => {
+    viewscounter.value += e.views;
+    blogcounter.value += 1;
+  });
+
+  users.forEach((e) => {
+    userCounter.value += 1;
+  });
+});
+</script>
 
 <style lang="scss" scoped>
 #main {

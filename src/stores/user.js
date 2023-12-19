@@ -4,7 +4,7 @@ import user from "../api/user";
 export const useUserStore = defineStore({
   id: "user",
   state: () => ({
-    // blogs: [],
+    users: [],
   }),
   actions: {
     async signUpUser(payload) {
@@ -34,6 +34,15 @@ export const useUserStore = defineStore({
     async updateUser(id, payload) {
       try {
         let res = await user.updateUser(id, payload);
+        return res;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async getAllUsers() {
+      try {
+        let res = await user.getAllUsers();
+        this.users = res;
         return res;
       } catch (error) {
         console.log(error);

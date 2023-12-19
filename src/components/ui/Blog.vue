@@ -3,7 +3,9 @@
     <img :src="props.image" alt="Blog image" class="rounded" />
     <div>
       <h1 class="font-['Montserrat'] text-[18px] mb-2">{{ props.name }}</h1>
-      <a href="#" class="font-['Montserrat'] text-[15px] font-medium"
+      <a
+        @click="goSinglePage(props.id)"
+        class="font-['Montserrat'] text-[15px] font-medium cursor-pointer"
         >Ko'proq...</a
       >
     </div>
@@ -11,12 +13,20 @@
 </template>
 
 <script setup>
+import router from "../../router/index.js";
+
+const goSinglePage = async (id) => {
+  await router.push(`/blog/${id}`);
+};
 const props = defineProps({
   name: {
     type: String,
   },
   image: {
     type: String,
+  },
+  id: {
+    type: Number,
   },
 });
 </script>

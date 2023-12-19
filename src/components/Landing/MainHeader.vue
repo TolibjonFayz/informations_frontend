@@ -50,7 +50,7 @@
         v-for="(item, index) in store.searched"
         :key="index"
         class="flex cursor-pointer p-2 hover:bg-[#87CEFA] transition-all rounded"
-        @click="single(item.title)"
+        @click="goSinglePage(item.id)"
       >
         {{ item.title }}
       </a>
@@ -70,6 +70,9 @@ const pusher = () => {
 };
 
 const isopen = ref(false);
+const goSinglePage = async (id) => {
+  await router.push(`/blog/${id}`);
+};
 
 onMounted(() => {
   watch(search, (value) => {
@@ -120,7 +123,6 @@ onMounted(() => {
     font-size: 12px;
   }
   #search {
-    // top-[55px] right-[381px]
     right: 208px;
   }
 }

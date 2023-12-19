@@ -32,13 +32,51 @@
         >Qidirish</el-button
       >
     </div>
+
+    <!-- Search -->
+    <div
+      id="search"
+      v-if="isopen"
+      class="w-[250px] scroll-m-1 transition-transform category text-white bg-[#1E90FF] absolute top-[55px] right-[245px] h-auto rounded p-3"
+    >
+      <a
+        v-for="(item, index) in store.searched"
+        :key="index"
+        class="flex cursor-pointer p-2 hover:bg-[#87CEFA] transition-all rounded"
+        @click="goSinglePage(item.id)"
+      >
+        {{ item.title }}
+      </a>
+    </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { onMounted, ref, watch } from "vue";
+import { useBlogStore } from "../../stores/blog";
+import router from "../../router/index.js";
 
+const store = useBlogStore();
 const search = ref("");
+const isopen = ref(false);
+
+const goSinglePage = async (id) => {
+  await router.push(`/blog/${id}`);
+};
+
+onMounted(() => {
+  watch(search, (value) => {
+    const payload = {
+      text: search.value,
+    };
+    if (value != "") {
+      isopen.value = true;
+      store.searchBlogs(payload);
+    } else {
+      isopen.value = false;
+    }
+  });
+});
 </script>
 
 <style lang="scss" scoped>
@@ -74,6 +112,9 @@ const search = ref("");
     padding: 8px 12px;
     font-size: 12px;
   }
+  #search {
+    right: 90px;
+  }
 }
 
 @media screen and (max-width: 600px) {
@@ -85,6 +126,62 @@ const search = ref("");
   }
   .hidden {
     display: flex;
+  }
+  #search {
+    top: 90px;
+    right: 220px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  #search {
+    right: 150px;
+  }
+}
+
+@media screen and (max-width: 435px) {
+  #search {
+    right: 110px;
+    a {
+      font-size: 13px;
+      padding: 5px;
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  #search {
+    padding: 5px;
+    width: 220px;
+    right: 100px;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  #search {
+    width: 200px;
+    right: 100px;
+  }
+}
+
+@media screen and (max-width: 340px) {
+  #search {
+    width: 180px;
+    right: 100px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  #search {
+    width: 150px;
+    right: 100px;
+  }
+}
+
+@media screen and (max-width: 290px) {
+  #search {
+    width: 140px;
+    right: 100px;
   }
 }
 </style>

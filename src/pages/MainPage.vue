@@ -1,8 +1,8 @@
 <template>
   <MainHeader />
   <Organamiz />
-  <Yangimavzu />
   <Kontent />
+  <Yangimavzu />
   <LastBlogs />
   <Footer />
 </template>

@@ -29,6 +29,7 @@
         :key="index"
         :name="item?.title"
         :image="item?.picture[0]?.img_url"
+        :id="item.id"
       >
       </Blog>
     </div>

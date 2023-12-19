@@ -69,11 +69,6 @@
           type="warning"
         />
       </el-form-item>
-      <el-alert
-        v-if="isWrong"
-        title="Email yoki maxfiy so'z xato"
-        type="error"
-      />
     </el-form>
     <el-button
       id="qidirish2"
@@ -82,7 +77,10 @@
       @click="login()"
       >Ro'yxatdan o'tish</el-button
     >
-    <a href="/login" class="text-[12px] font-['Montserrat'] mt-8">
+    <a
+      @click="goToLogin()"
+      class="text-[12px] font-['Montserrat'] mt-8 cursor-pointer"
+    >
       Allaqachon ro'yxatdan o'tganmisiz. Unda hisobingizga kiring.
     </a>
   </div>
@@ -109,8 +107,6 @@ const isPasswordempty = ref(false);
 const isConfirmPasswordempty = ref(false);
 const isEmailempty = ref(false);
 const isPasswordsEqual = ref(false);
-
-const isWrong = ref(false);
 
 const login = async () => {
   if (formLabelAlign.first_name == "") {
@@ -141,16 +137,16 @@ const login = async () => {
     islastnameempty.value = false;
     isfirstnameempty.value = false;
   } else {
+    isPasswordsEqual.value = false;
     const result = await store.signUpUser(formLabelAlign);
     if (!result) {
-      isWrong.value = true;
       ElNotification({
-        title: "Nimadir xato ketdi",
+        title:
+          "Ushbu foydalanuvchi allaqachon mavjud yoki boshqa nimadir xato)",
         message: `${result}`,
         type: "error",
       });
     } else {
-      isWrong.value = false;
       ElNotification({
         title: "Muvaffaqiyatli",
         message: "Tizimga muvaffaqiyatli kirdingiz",
@@ -163,6 +159,10 @@ const login = async () => {
       }, 2000);
     }
   }
+};
+
+const goToLogin = () => {
+  router.push({ name: "login" });
 };
 </script>
 

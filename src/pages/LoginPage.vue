@@ -50,7 +50,10 @@
       @click="login()"
       >Tizimga kirish</el-button
     >
-    <a href="/signup" class="text-[12px] font-['Montserrat'] mt-8">
+    <a
+      @click="goToSignUp()"
+      class="text-[12px] font-['Montserrat'] mt-8 cursor-pointer"
+    >
       Hisobingiz yo'qmi? Hoziroq roʻyxatdan oʻting!
     </a>
   </div>
@@ -104,6 +107,10 @@ const login = async () => {
       }, 2000);
     }
   }
+};
+
+const goToSignUp = () => {
+  router.push({ name: "signup" });
 };
 </script>
 

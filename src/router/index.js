@@ -6,6 +6,7 @@ import AboutPageVue from "../pages/AboutPage.vue";
 import SinglePageVue from "../pages/SinglePage.vue";
 import LoginPageVue from "../pages/LoginPage.vue";
 import SignUppageVue from "../pages/SignUppage.vue";
+import SavedPageVue from "../pages/SavedPage.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -44,6 +45,11 @@ const router = createRouter({
       path: "/signup",
       name: "signup",
       component: SignUppageVue,
+    },
+    {
+      path: "/saved",
+      name: "saved",
+      component: SavedPageVue,
     },
   ],
 });
