@@ -1,3 +1,5 @@
+# About
+Ushbu repository kodi "malumotlarr.uz" satiga deoploy qilingan.
 # informations-front
 
 This template should help get you started developing with Vue 3 in Vite.
