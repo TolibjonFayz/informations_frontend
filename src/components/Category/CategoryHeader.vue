@@ -37,16 +37,18 @@
     <div
       id="search"
       v-if="isopen"
-      class="w-[250px] scroll-m-1 transition-transform category text-white bg-[#1E90FF] absolute top-[55px] right-[245px] h-auto rounded p-3"
+      class="w-[250px] scroll-m-1 transition-transform category text-white absolute top-[55px] right-[245px] h-auto rounded p-3"
     >
-      <a
-        v-for="(item, index) in store.searched"
-        :key="index"
-        class="flex cursor-pointer p-2 hover:bg-[#87CEFA] transition-all rounded"
-        @click="goSinglePage(item.id)"
-      >
-        {{ item.title }}
-      </a>
+      <el-scrollbar height="400px" class="">
+        <p
+          v-for="item in store.searched"
+          :key="item"
+          @click="goSinglePage(item.id)"
+          class="scrollbar-demo-item bg-[#1E90FF] cursor-pointer hover:bg-[#87CEFA] transition-all"
+        >
+          {{ item.title }}
+        </p>
+      </el-scrollbar>
     </div>
   </div>
 </template>
@@ -80,6 +82,15 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
+.scrollbar-demo-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  margin: 10px;
+  text-align: center;
+  border-radius: 4px;
+}
 .olmaxon {
   width: 250px;
 }
