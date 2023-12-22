@@ -5,7 +5,7 @@
       <h1 class="font-['Montserrat'] text-[18px] mb-2">{{ props.name }}</h1>
       <a
         @click="goSinglePage(props.id)"
-        class="font-['Montserrat'] text-[15px] font-medium cursor-pointer"
+        class="font-['Montserrat'] text-[15px] font-medium cursor-pointer hover:text-[#999]"
         >Ko'proq...</a
       >
     </div>
@@ -35,6 +35,11 @@ const props = defineProps({
 #blog {
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+#blog:hover {
+  transform: scale(1.05);
+  transition: ease-in-out 0.3s;
 }
 @media screen and (max-width: 860px) {
   #blog {

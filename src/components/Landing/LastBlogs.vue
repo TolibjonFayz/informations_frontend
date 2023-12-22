@@ -25,7 +25,12 @@
         <h2 class="ml-5 text-[18px] font-['Montserrat']">
           {{ item.body.slice(0, 150) }}
         </h2>
-        <h1 @click="goSinglePage(item.id)" class="mb-5 ml-5 text-[18px] font-medium cursor-pointer">Ko'proq...</h1>
+        <h1
+          @click="goSinglePage(item.id)"
+          class="mb-5 ml-5 text-[18px] font-medium cursor-pointer"
+        >
+          Ko'proq...
+        </h1>
       </div>
     </div>
   </div>
@@ -66,6 +71,10 @@ onMounted(async () => {
 <style lang="scss" scoped>
 #blog {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+#blog:hover {
+  transform: scale(1.05);
+  transition: ease-in-out 0.3s;
 }
 @media screen and (max-width: 800px) {
   #main {
