@@ -1,6 +1,6 @@
 <template>
   <div id="blog" class="flex w-[18%] justify-between flex-col gap-3 p-2">
-    <img :src="props.image" alt="Blog image" class="rounded" />
+    <img :src="props.image" alt="Blog image" class="rounded" loading="lazy" />
     <div>
       <h1 class="font-['Montserrat'] text-[18px] mb-2">{{ props.name }}</h1>
       <a
