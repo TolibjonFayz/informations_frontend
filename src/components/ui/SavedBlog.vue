@@ -31,7 +31,7 @@
     </div>
     <div id="ichki-ikki" class="flex flex-col justify-end gap-2">
       <h1
-        @click="deleteSaved(item?.id)"
+        @click="deleteSaved(item?.id, item?.blog?.title)"
         class="font-['Montserrat'] cursor-pointer"
       >
         O'chirish <i class="fa-regular fa-trash-can"></i>
@@ -55,7 +55,9 @@ import router from "../../router/index.js";
 import { useSavedStore } from "../../stores/saved";
 
 const store = useSavedStore();
-const deleteSaved = async (id) => {
+const deleteSaved = async (id, title) => {
+  console.log(title);
+  document.cookie = `${title}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
   await store.deleteSavedById(id);
   location.reload();
 };

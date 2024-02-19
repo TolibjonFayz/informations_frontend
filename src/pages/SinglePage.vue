@@ -3,7 +3,11 @@
     <a href="/" class="font-['Montserrat'] text-[30px] m-10 font-medium"
       >Ma'lumotlar</a
     >
-    <div id="main-in" class="flex flex-col gap-10 items-center">
+    <div
+      v-loading="loading"
+      id="main-in"
+      class="flex flex-col gap-10 items-center"
+    >
       <h1 class="text-[50px] font-['Montserrat'] font-medium mt-10">
         {{ store.blog.title }}
       </h1>
@@ -81,12 +85,12 @@ const route = useRoute();
 const dialogVisible = ref(false);
 
 const handleClose = (done) => {
-  ElMessageBox.confirm("Are you sure to close this dialog?")
+  ElMessageBox.confirm("Bu muloqot oynasini yopmoqchimisiz?")
     .then(() => {
       done();
     })
-    .catch(() => {
-      // catch error
+    .catch((error) => {
+      console.log(error);
     });
 };
 
@@ -128,8 +132,11 @@ const goToSignUp = () => {
   router.push({ name: "signup" });
 };
 
+const loading = ref(false);
 onMounted(async () => {
+  loading.value = true;
   await store.getBlogById(route.params.id);
+  loading.value = false;
 });
 </script>
 

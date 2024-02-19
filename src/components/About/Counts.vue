@@ -1,27 +1,35 @@
 <template>
-  <div
-    id="main"
-    class="flex justify-around items-center text-center flex-wrap mb-14"
-  >
-    <h1 class="p-5">
-      {{ blogcounter }}+
-      <h2>Chop etilgan bloglar</h2>
-    </h1>
-
-    <h1 class="p-5">
-      1
-      <h2>Oylik tajriba</h2>
-    </h1>
-
-    <h1 class="p-5">
-      {{ viewscounter }}+
-      <h2>Barcha vaqt o'qishlar soni</h2>
-    </h1>
-
-    <h1 class="p-5">
-      {{ userCounter }}+
-      <h2>Mamnun o'quvchilar</h2>
-    </h1>
+  <div id="main" class="flex f justify-around mb-14">
+    <el-row v-loading="loading" class="font-['Montserrat']">
+      <el-col :span="6">
+        <el-statistic
+          title="Chop etilgan bloglar
+"
+          :value="blogcounter"
+        />
+      </el-col>
+      <el-col :span="6">
+        <el-statistic
+          title="Oylik tajriba
+"
+          :value="3"
+        />
+      </el-col>
+      <el-col :span="6">
+        <el-statistic
+          title="Barcha vaqt o'qishlar soni
+"
+          :value="viewscounter"
+        />
+      </el-col>
+      <el-col :span="6">
+        <el-statistic
+          title="Mamnun o'quvchilar
+"
+          :value="userCounter"
+        />
+      </el-col>
+    </el-row>
   </div>
 </template>
 
@@ -30,6 +38,7 @@ import { onMounted, ref } from "vue";
 import { useBlogStore } from "../../stores/blog";
 import { useUserStore } from "../../stores/user";
 
+const loading = ref(false);
 const store = useBlogStore();
 const userStore = useUserStore();
 const viewscounter = ref(0);
@@ -37,6 +46,7 @@ const blogcounter = ref(0);
 const userCounter = ref(0);
 
 onMounted(async () => {
+  loading.value = true;
   const blogs = await store.getBlogs();
   const users = await userStore.getAllUsers();
 
@@ -48,10 +58,14 @@ onMounted(async () => {
   users.forEach((e) => {
     userCounter.value += 1;
   });
+  loading.value = false;
 });
 </script>
 
 <style lang="scss" scoped>
+.el-col {
+  text-align: center;
+}
 #main {
   h1 {
     font-size: 48px;

@@ -1,5 +1,5 @@
 <template>
-  <div id="main" class="flex mr-8">
+  <div v-loading="loading" id="main" class="flex mr-8">
     <div
       id="first"
       class="w-[30%] h-[88vh] ml-10 pt-8 mt-0.5 flex flex-col gap-2"
@@ -43,7 +43,7 @@
         </h1>
 
         <!-- Blogs -->
-        <SearchBlog :data="blogStore.searchedquery" />
+        <SearchBlog :data="result" />
       </div>
 
       <h1 v-else class="font-['Montserrat'] text-[30px]">
@@ -65,26 +65,34 @@ const value = ref(""); //Sarlavha
 const search = ref(""); //Kategoriya
 const isRight = ref(false);
 const result = ref(""); //Qidirishni boshganda qaytadiganlar
+const loading = ref(false);
 
 const goSearch = async () => {
+  loading.value = true;
   const payload = {
     title: search.value,
     category_id: value.value,
   };
   result.value = await blogStore.searchBlogsQuery(payload);
+  loading.value = false;
 };
 watch(result, (value) => {
   if (value == "") isRight.value = false;
   else isRight.value = true;
 });
 onMounted(async () => {
+  loading.value = true;
+  result.value = await blogStore.getBlogs();
   await categoryStore.getCategories();
+  loading.value = false;
 });
 </script>
 
 <style lang="scss" scoped>
-#first {
-  border-right: 1px solid #999;
+#second {
+  padding-left: 50px;
+  margin-left: -30px;
+  border-left: 1px solid #999;
 }
 #blog {
   box-shadow: 2px 2px 2px 2px rgb(212, 212, 212);

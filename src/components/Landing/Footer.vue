@@ -6,7 +6,7 @@
       >
       <h5 class="text-[14px] font-['Montserrat']">Ma'lumotlar ombori!</h5>
       <h3 class="text-[14px] font-['Montserrat'] mt-8">
-        Tolibjon Fayzullayev - © 2023 - Barcha huquqlar himoqyalangan
+        Tolibjon Fayzullayev - © 2024 - Barcha huquqlar himoyalangan
       </h3>
     </div>
 
@@ -20,7 +20,7 @@
       <h3 class="text-[14px] font-['Montserrat'] mt-10">
         Biz bilan bog'lanish
       </h3>
-      <h3 class="text-[14px] font-['Montserrat']">+998 90 111 22 33</h3>
+      <h3 class="text-[14px] font-['Montserrat']">+998 90 111 ** **</h3>
     </div>
   </div>
 </template>

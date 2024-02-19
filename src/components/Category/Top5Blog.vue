@@ -3,7 +3,7 @@
     <h1 class="text-[20px] font-medium font-['Montserrat'] mb-5">
       Top 5 Bloglar
     </h1>
-    <div class="flex mr-8 flex-wrap justify-center gap-5">
+    <div v-loading="loading" class="flex mr-8 flex-wrap justify-center gap-5">
       <Blog
         v-for="(item, index) in resultBlogs"
         :key="index"
@@ -21,6 +21,7 @@ import Blog from "../ui/Blog.vue";
 import { useBlogStore } from "../../stores/blog";
 import { onMounted, ref } from "vue";
 
+const loading = ref(false);
 const store = useBlogStore();
 const resultBlogs = ref(Array());
 const result = (blogs, topblogs) => {
@@ -49,8 +50,10 @@ const sort = (blogs) => {
 
 const blogs5 = ref([]);
 onMounted(async () => {
+  loading.value = true;
   blogs5.value = await store.getBlogs();
   blogs5.value = sort(blogs5.value);
+  loading.value = false;
 });
 </script>
 

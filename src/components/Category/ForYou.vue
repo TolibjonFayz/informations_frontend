@@ -4,7 +4,7 @@
       Siz uchun tavsiyalar
       <i class="fa-solid fa-fire" style="color: #ffbb00"></i>
     </h1>
-    <div class="flex mr-8 flex-wrap justify-center gap-5">
+    <div v-loading="loading" class="flex mr-8 flex-wrap justify-center gap-5">
       <Blog
         :name="blog2?.title"
         :image="blog2?.picture[0]?.img_url"
@@ -44,6 +44,7 @@ import Blog from "../ui/Blog.vue";
 import { useBlogStore } from "../../stores/blog";
 import { onMounted, ref } from "vue";
 
+const loading = ref(false);
 const store = useBlogStore();
 const blog1 = ref();
 const blog2 = ref();
@@ -52,11 +53,13 @@ const blog4 = ref();
 const blog5 = ref();
 
 onMounted(async () => {
-  blog1.value = await store.getBlogById(21);
-  blog2.value = await store.getBlogById(19);
-  blog3.value = await store.getBlogById(6);
-  blog4.value = await store.getBlogById(13);
-  blog5.value = await store.getBlogById(23);
+  loading.value = true;
+  blog1.value = await store.getBlogById(1);
+  blog2.value = await store.getBlogById(2);
+  blog3.value = await store.getBlogById(3);
+  blog4.value = await store.getBlogById(4);
+  blog5.value = await store.getBlogById(5);
+  loading.value = false;
 });
 </script>
 

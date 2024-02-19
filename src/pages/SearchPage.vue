@@ -2,7 +2,7 @@
   <div>
     <SearchHeader />
     <SearchFilter />
-    <Footer />
+    <Footer class="mt-5" />
   </div>
 </template>
 

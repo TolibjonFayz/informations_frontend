@@ -1,5 +1,5 @@
 <template>
-  <div id="main" class="mt-10 ml-11 mb-10">
+  <div v-loading="loading" id="main" class="mt-10 ml-11 mb-10">
     <div class="flex mr-8 flex-wrap justify-center gap-5">
       <Blog
         v-for="(item, index) in store.blogs"
@@ -18,6 +18,7 @@ import Blog from "../ui/Blog.vue";
 import { useBlogStore } from "../../stores/blog";
 import { onMounted, ref } from "vue";
 
+const loading = ref(false);
 const store = useBlogStore();
 const blogs = ref([]);
 const props = defineProps({
@@ -27,7 +28,9 @@ const props = defineProps({
 });
 
 onMounted(async () => {
+  loading.value = true;
   blogs.value = await store.getBlogByCatId(props.id);
+  loading.value = false;
 });
 </script>
 

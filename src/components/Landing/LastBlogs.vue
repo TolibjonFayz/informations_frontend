@@ -11,7 +11,11 @@
       Ilm-fan, tarix va tabiat bizning dunyomizni qanday shakllantirishini bilib
       oling.
     </h5>
-    <div id="in" class="flex justify-center items-center w-[70%] gap-10">
+    <div
+      v-loading="loading"
+      id="in"
+      class="flex justify-center items-center w-[70%] gap-10"
+    >
       <div
         v-for="(item, index) in result"
         :key="index"
@@ -41,6 +45,7 @@ import { onMounted, ref } from "vue";
 import { useBlogStore } from "../../stores/blog";
 import router from "../../router/index.js";
 
+const loading = ref("false");
 const goSinglePage = async (id) => {
   await router.push(`/blog/${id}`);
 };
@@ -51,7 +56,7 @@ function getLatestRecords(data) {
   let counter = 0;
   const latestRecords = [];
 
-  for (let i = data.length - 1; i >= 0; i--) {
+  for (let i = data?.length - 1; i >= 0; i--) {
     latestRecords.push(data[i]);
     counter++;
     if (counter === 3) {
@@ -63,8 +68,10 @@ function getLatestRecords(data) {
 
 const result = ref("");
 onMounted(async () => {
+  loading.value = true;
   const res = await store.getBlogs();
   result.value = getLatestRecords(res);
+  loading.value = false;
 });
 </script>
 
