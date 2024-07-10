@@ -1,8 +1,6 @@
 <template>
   <div id="main" v-if="store.blog">
-    <a href="/" class="font-['Montserrat'] text-[30px] m-10 font-medium"
-      >Ma'lumotlar</a
-    >
+    <MainHeader />
     <div
       v-loading="loading"
       id="main-in"
@@ -71,6 +69,7 @@
 </template>
 
 <script setup>
+import MainHeader from "../components/Landing/MainHeader.vue";
 import { onMounted, ref } from "vue";
 import { useBlogStore } from "../stores/blog";
 import Footer from "../components/Landing/Footer.vue";

@@ -1,13 +1,13 @@
 <template>
   <div>
-    <SearchHeader />
+    <MainHeader />
     <SearchFilter />
     <Footer class="mt-5" />
   </div>
 </template>
 
 <script setup>
-import SearchHeader from "../components/Search/SearchHeader.vue";
+import MainHeader from "../components/Landing/MainHeader.vue";
 import SearchFilter from "../components/Search/SearchFilter.vue";
 import Footer from "../components/Landing/Footer.vue";
 </script>

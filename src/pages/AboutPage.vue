@@ -1,5 +1,5 @@
 <template>
-  <AboutHeader />
+  <MainHeader />
   <Counts />
   <Fikr />
   <a
@@ -12,7 +12,7 @@
 </template>
 
 <script setup>
-import AboutHeader from "../components/About/AboutHeader.vue";
+import MainHeader from "../components/Landing/MainHeader.vue";
 import Counts from "../components/About/Counts.vue";
 import Fikr from "../components/About/Fikr.vue";
 import Footer from "../components/Landing/Footer.vue";

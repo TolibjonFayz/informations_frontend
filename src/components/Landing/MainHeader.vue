@@ -1,21 +1,23 @@
 <template>
-  <div class="exe pb-5">
+  <div class="main">
     <div class="flex gap-5 items-center justify-between mt-3">
       <a
         id="main"
         href="/"
-        class="text-[32px] font-['Montserrat'] font-medium ml-40"
-        >Ma'lumotlar</a
+        class="text-[32px] font-['Montserrat'] flex items-center font-medium ml-40"
       >
+        <img src="../../assets/logo.png" alt="Logo" class="w-10" />
+        Ma'lumotlar
+      </a>
       <div id="div" class="mr-40 flex">
         <el-input
           v-model="search"
           placeholder="Nima haqida malumot izlayapsiz?"
           class="olmaxon"
         />
-        <el-button id="qidirish" type="primary" class="font-['Montserrat']"
-          >Qidirish</el-button
-        >
+        <el-button id="qidirish" type="primary" class="font-['Montserrat']">{{
+          $t("search")
+        }}</el-button>
         <el-button
           id="kategory"
           type="primary"
@@ -40,6 +42,35 @@
       >
     </div>
 
+    <div id="carrot-language-bar" class="navbar-nav">
+      <div class="nav-item dropdown" style="position: relative">
+        <a class="navbar-item" @click="isVisible = !isVisible">
+          <div class="link">
+            <span class="lang">{{ $t(`${$i18n.locale}`) }}</span>
+            <Icon class="icon" icon="uiw:down" width="12" />
+          </div>
+        </a>
+        <div
+          v-if="isVisible"
+          class="languages__action"
+          style="position: absolute"
+        >
+          <div class="languages__action-item" @click="changeLang('uz')">
+            <Icon class="icon" icon="cif:uz" width="18" height="18" />
+            <span>O'zbek</span>
+          </div>
+          <div class="languages__action-item" @click="changeLang('ru')">
+            <Icon class="icon" icon="cif:ru" width="18" height="18" />
+            <span>Русский</span>
+          </div>
+          <div class="languages__action-item" @click="changeLang('en')">
+            <Icon class="icon" icon="cif:us" width="18" height="18" />
+            <span>English</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Search -->
     <div
       id="search"
@@ -61,19 +92,36 @@
 </template>
 
 <script setup>
-import { onMounted, ref, watch } from "vue";
 import router from "../../router/index.js";
+import { onMounted, ref, watch } from "vue";
 import { useBlogStore } from "../../stores/blog";
+import i18n from "@/i18n.js";
+
 const store = useBlogStore();
 
 const search = ref("");
+const isopen = ref(false);
+
+const isVisible = ref(false);
+window?.addEventListener("click", (e) => {
+  const target = e.target;
+  if (!target.closest("#carrot-language-bar")) {
+    isVisible.value = false;
+  }
+});
+
 const pusher = () => {
   router.push({ name: "category" });
 };
 
-const isopen = ref(false);
 const goSinglePage = async (id) => {
   await router.push(`/blog/${id}`);
+};
+
+const changeLang = (lang) => {
+  i18n.global.locale = lang;
+  document.cookie = `lang=${lang}`;
+  isVisible.value = false;
 };
 
 onMounted(() => {
@@ -92,102 +140,41 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
-.scrollbar-demo-item {
+.navbar-nav {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 50px;
-  margin: 10px;
-  text-align: center;
-  border-radius: 4px;
 }
-.olmaxon {
-  width: 250px;
-}
-#qidirish2 {
-  padding: 8px 12px;
-  font-size: 12px;
-}
-#qidirish {
-  border: none;
-}
-#kategory {
-  border: none;
-}
-.exe {
-  box-shadow: 1px 2px 3px 0.5px rgb(212, 212, 212);
-}
-@media screen and (max-width: 1000px) {
-  #main {
-    font-size: 24px;
-    margin-left: 20px;
-  }
-  #div {
-    margin-right: 20px;
-  }
-  #kategory {
-    padding: 8px 12px;
-    font-size: 12px;
-  }
-  #qidirish {
-    padding: 8px 12px;
-    font-size: 12px;
-  }
-  #search {
-    right: 208px;
-  }
-}
+.languages {
+  position: relative !important;
+  &__action {
+    z-index: 101;
+    position: absolute;
+    background-color: #ffffff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.35);
+    cursor: pointer;
+    transition: all 0.3s;
+    right: 0%;
+    top: 25px;
+    border-radius: 4px;
+    overflow: hidden;
 
-@media screen and (max-width: 600px) {
-  #qidirish {
-    display: none;
-  }
-  .olmaxon {
-    display: none;
-  }
-  .hidden {
-    display: flex;
-  }
-  #search {
-    top: 90px;
-    right: 220px;
-  }
-}
-@media screen and (max-width: 500px) {
-  #search {
-    right: 150px;
-  }
-}
-
-@media screen and (max-width: 430px) {
-  #search {
-    right: 100px;
-  }
-}
-
-@media screen and (max-width: 400px) {
-  #search {
-    width: 220px;
-    right: 120px;
-  }
-}
-@media screen and (max-width: 380px) {
-  #search {
-    right: 100px;
-    a {
+    &-item {
+      display: flex;
+      gap: 5px;
+      color: var(--text-color);
+      padding: 5px 10px;
       font-size: 13px;
-      padding: 5px;
-    }
-  }
-}
+      cursor: pointer;
+      transition: all 0.3s;
+      &:hover {
+        background-color: #f5f5f5;
+        color: var(--primary-color);
+      }
 
-@media screen and (max-width: 350px) {
-  #search {
-    right: 100px;
-    width: 200px;
-    a {
-      font-size: 13px;
-      padding: 5px;
+      & + .languages__action-item {
+        border-top: 1px solid #e5e5e5;
+      }
     }
   }
 }
