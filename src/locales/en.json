@@ -1,6 +1,8 @@
 {
-  "hello": "Hello",
+  "search": "Search",
   "en": "English",
-  "uz": "O'zbek",
-  "ru": "Русский"
+  "uz": "O'zbekcha",
+  "ru": "Русский",
+  "categories": "Categories",
+  "squirrelbee": "Squirrel, Bee"
 }

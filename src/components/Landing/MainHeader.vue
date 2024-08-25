@@ -1,37 +1,32 @@
 <template>
-  <div class="main mycontainer">
-    <div class="flex gap-5 items-center justify-between mt-3">
-      <a
-        href="/"
-        class="text-[32px] font-['Montserrat'] flex items-center font-medium ml-40"
-      >
+  <div class="mycontainer">
+    <div class="flex items-center justify-between mt-3">
+      <a href="/" class="text-[32px] flex items-center font-medium">
         <img src="../../assets/logo.png" alt="Logo" class="w-12" />
         Ma'lumotlar
       </a>
-      <div id="div" class="mr-40 flex">
+
+      <div class="flex gap-1">
         <el-input
           v-model="search"
-          placeholder="Nima haqida malumot izlayapsiz?"
-          class="olmaxon"
+          :placeholder="$t('squirrelbee')"
+          class="searchinput"
         />
-        <el-button id="qidirish" type="primary" class="font-['Montserrat']">{{
-          $t("search")
-        }}</el-button>
-        <el-button
-          id="kategory"
-          type="primary"
-          class="text-white border-none font-['Montserrat'] ml-5"
-          @click="pusher()"
-        >
-          Kategoriyalar
+        <el-button id="qidirish" type="primary">{{ $t("search") }}</el-button>
+      </div>
+
+      <div class="flex gap-5">
+        <el-button type="primary" @click="router.push({ name: 'category' })">
+          <el-icon class="mr-0.5"><Menu /></el-icon>
+          {{ $t("categories") }}
         </el-button>
 
         <div id="language-bar" class="navbar-nav">
           <div style="position: relative">
-            <a class="navbar-item" @click="isVisible = !isVisible">
-              <div class="link">
+            <a @click="isVisible = !isVisible">
+              <div class="flex items-center gap-1 cursor-pointer">
                 <span class="lang">{{ $t(`${$i18n.locale}`) }}</span>
-                <Icon class="icon" icon="uiw:down" width="12" />
+                <el-icon><ArrowDown /></el-icon>
               </div>
             </a>
             <div
@@ -40,15 +35,15 @@
               style="position: absolute"
             >
               <div class="languages__action-item" @click="changeLang('uz')">
-                <Icon class="icon" icon="cif:uz" width="18" height="18" />
-                <span>O'zbek</span>
+                <span class="fi fi-uz"></span>
+                <span>O'zbekcha</span>
               </div>
               <div class="languages__action-item" @click="changeLang('ru')">
-                <Icon class="icon" icon="cif:ru" width="18" height="18" />
+                <span class="fi fi-ru"></span>
                 <span>Русский</span>
               </div>
               <div class="languages__action-item" @click="changeLang('en')">
-                <Icon class="icon" icon="cif:us" width="18" height="18" />
+                <span class="fi fi-us"></span>
                 <span>English</span>
               </div>
             </div>
@@ -56,34 +51,25 @@
         </div>
       </div>
     </div>
+
     <!-- Hidden for phone -->
     <div class="hidden justify-between items-center ml-5 mr-5 mt-2">
-      <el-input
-        v-model="search"
-        placeholder="Nima haqida malumot izlayapsiz?"
-        class="w-60"
-      />
-      <el-button
-        id="qidirish2"
-        type="primary"
-        class="text-black font-['Montserrat']"
-      >
-        Qidirish
-      </el-button>
+      <el-input v-model="search" placeholder="Olmahon, Asalari" class="w-60" />
+      <el-button type="primary" class="text-black"> Qidirish </el-button>
     </div>
 
     <!-- Search -->
     <div
       id="search"
       v-if="isopen"
-      class="w-[250px] transition-transform category text-white absolute top-[55px] right-[381px] h-auto rounded p-3"
+      class="w-[290px] text-white absolute top-[55px] right-[670px]"
     >
-      <el-scrollbar height="400px" class="">
+      <el-scrollbar height="300px" class="rounded">
         <p
           v-for="item in store.searched"
           :key="item"
-          @click="goSinglePage(item.id)"
-          class="scrollbar-demo-item bg-[#1E90FF] cursor-pointer hover:bg-[#87CEFA] transition-all"
+          @click="router.push(`/blog/${item?.id}`)"
+          class="pl-2 scrollbar-demo-item bg-[#1E90FF] cursor-pointer hover:bg-[#87CEFA] transition-all"
         >
           {{ item.title }}
         </p>
@@ -111,14 +97,6 @@ window?.addEventListener("click", (e) => {
   }
 });
 
-const pusher = () => {
-  router.push({ name: "category" });
-};
-
-const goSinglePage = async (id) => {
-  await router.push(`/blog/${id}`);
-};
-
 const changeLang = (lang) => {
   i18n.global.locale = lang;
   document.cookie = `lang=${lang}`;
@@ -141,13 +119,17 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
+.searchinput {
+  width: 300px;
+}
+
 .navbar-nav {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .languages {
-  position: relative !important;
+  position: relative;
   &__action {
     z-index: 101;
     position: absolute;
@@ -156,7 +138,7 @@ onMounted(() => {
     cursor: pointer;
     transition: all 0.3s;
     right: 0%;
-    top: 25px;
+    top: 30px;
     border-radius: 4px;
     overflow: hidden;
 
