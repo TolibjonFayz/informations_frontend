@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div>
     <MainHeader />
     <Organamiz />
     <Kontent />
@@ -18,7 +18,4 @@ import LastBlogs from "../components/Landing/LastBlogs.vue";
 import Footer from "../components/Landing/Footer.vue";
 </script>
 
-<style lang="scss" scoped>
-.container {
-}
-</style>
+<style lang="scss" scoped></style>

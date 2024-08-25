@@ -1,12 +1,11 @@
 <template>
-  <div class="main">
+  <div class="main mycontainer">
     <div class="flex gap-5 items-center justify-between mt-3">
       <a
-        id="main"
         href="/"
         class="text-[32px] font-['Montserrat'] flex items-center font-medium ml-40"
       >
-        <img src="../../assets/logo.png" alt="Logo" class="w-10" />
+        <img src="../../assets/logo.png" alt="Logo" class="w-12" />
         Ma'lumotlar
       </a>
       <div id="div" class="mr-40 flex">
@@ -23,8 +22,38 @@
           type="primary"
           class="text-white border-none font-['Montserrat'] ml-5"
           @click="pusher()"
-          >Kategoriyalar</el-button
         >
+          Kategoriyalar
+        </el-button>
+
+        <div id="language-bar" class="navbar-nav">
+          <div style="position: relative">
+            <a class="navbar-item" @click="isVisible = !isVisible">
+              <div class="link">
+                <span class="lang">{{ $t(`${$i18n.locale}`) }}</span>
+                <Icon class="icon" icon="uiw:down" width="12" />
+              </div>
+            </a>
+            <div
+              v-if="isVisible"
+              class="languages__action"
+              style="position: absolute"
+            >
+              <div class="languages__action-item" @click="changeLang('uz')">
+                <Icon class="icon" icon="cif:uz" width="18" height="18" />
+                <span>O'zbek</span>
+              </div>
+              <div class="languages__action-item" @click="changeLang('ru')">
+                <Icon class="icon" icon="cif:ru" width="18" height="18" />
+                <span>Русский</span>
+              </div>
+              <div class="languages__action-item" @click="changeLang('en')">
+                <Icon class="icon" icon="cif:us" width="18" height="18" />
+                <span>English</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <!-- Hidden for phone -->
@@ -38,37 +67,9 @@
         id="qidirish2"
         type="primary"
         class="text-black font-['Montserrat']"
-        >Qidirish</el-button
       >
-    </div>
-
-    <div id="carrot-language-bar" class="navbar-nav">
-      <div class="nav-item dropdown" style="position: relative">
-        <a class="navbar-item" @click="isVisible = !isVisible">
-          <div class="link">
-            <span class="lang">{{ $t(`${$i18n.locale}`) }}</span>
-            <Icon class="icon" icon="uiw:down" width="12" />
-          </div>
-        </a>
-        <div
-          v-if="isVisible"
-          class="languages__action"
-          style="position: absolute"
-        >
-          <div class="languages__action-item" @click="changeLang('uz')">
-            <Icon class="icon" icon="cif:uz" width="18" height="18" />
-            <span>O'zbek</span>
-          </div>
-          <div class="languages__action-item" @click="changeLang('ru')">
-            <Icon class="icon" icon="cif:ru" width="18" height="18" />
-            <span>Русский</span>
-          </div>
-          <div class="languages__action-item" @click="changeLang('en')">
-            <Icon class="icon" icon="cif:us" width="18" height="18" />
-            <span>English</span>
-          </div>
-        </div>
-      </div>
+        Qidirish
+      </el-button>
     </div>
 
     <!-- Search -->
@@ -105,7 +106,7 @@ const isopen = ref(false);
 const isVisible = ref(false);
 window?.addEventListener("click", (e) => {
   const target = e.target;
-  if (!target.closest("#carrot-language-bar")) {
+  if (!target.closest("#language-bar")) {
     isVisible.value = false;
   }
 });
