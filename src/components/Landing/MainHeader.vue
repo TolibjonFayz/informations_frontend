@@ -1,26 +1,48 @@
 <template>
   <div class="mycontainer">
     <div class="flex items-center justify-between mt-3">
-      <a href="/" class="text-[32px] flex items-center font-medium">
+      <a href="/" class="logotext text-[32px] flex items-center font-medium">
         <img src="../../assets/logo.png" alt="Logo" class="w-12" />
         Ma'lumotlar
       </a>
 
-      <div class="flex gap-1">
+      <div id="searchdesktop" class="flex gap-1 relative">
         <el-input
           v-model="search"
           :placeholder="$t('squirrelbee')"
           class="searchinput"
         />
         <el-button id="qidirish" type="primary">{{ $t("search") }}</el-button>
+
+        <!-- Search result -->
+        <div
+          v-if="isopen"
+          class="absolute w-[290px] text-white top-[35px] left-[1%]"
+        >
+          <el-scrollbar height="300px" class="rounded">
+            <p
+              v-for="item in store.searched"
+              :key="item"
+              @click="router.push(`/blog/${item?.id}`)"
+              class="pl-2 scrollbar-demo-item bg-[#1E90FF] cursor-pointer hover:bg-[#87CEFA] transition-all"
+            >
+              {{ item.title }}
+            </p>
+          </el-scrollbar>
+        </div>
       </div>
 
       <div class="flex gap-5">
-        <el-button type="primary" @click="router.push({ name: 'category' })">
+        <el-button
+          class="categorydesktop"
+          type="primary"
+          @click="router.push({ name: 'category' })"
+        >
           <el-icon class="mr-0.5"><Menu /></el-icon>
           {{ $t("categories") }}
         </el-button>
 
+        <!-- Language changing -->
         <div id="language-bar" class="navbar-nav">
           <div style="position: relative">
             <a @click="isVisible = !isVisible">
@@ -36,7 +58,7 @@
             >
               <div class="languages__action-item" @click="changeLang('uz')">
                 <span class="fi fi-uz"></span>
-                <span>O'zbekcha</span>
+                <span>O'zbek</span>
               </div>
               <div class="languages__action-item" @click="changeLang('ru')">
                 <span class="fi fi-ru"></span>
@@ -44,7 +66,7 @@
               </div>
               <div class="languages__action-item" @click="changeLang('en')">
                 <span class="fi fi-us"></span>
-                <span>English</span>
+                <span>Enlish</span>
               </div>
             </div>
           </div>
@@ -52,28 +74,43 @@
       </div>
     </div>
 
-    <!-- Hidden for phone -->
-    <div class="hidden justify-between items-center ml-5 mr-5 mt-2">
-      <el-input v-model="search" placeholder="Olmahon, Asalari" class="w-60" />
-      <el-button type="primary" class="text-black"> Qidirish </el-button>
-    </div>
+    <!-- Mobile search -->
+    <div id="searchmobile" class="gap-1 hidden">
+      <div class="relative flex gap-1">
+        <el-input
+          v-model="search"
+          :placeholder="$t('squirrelbee')"
+          class="searchinputmobile"
+        />
+        <el-button id="qidirishmobile" type="primary">
+          {{ $t("search") }}
+        </el-button>
 
-    <!-- Search -->
-    <div
-      id="search"
-      v-if="isopen"
-      class="w-[290px] text-white absolute top-[55px] right-[670px]"
-    >
-      <el-scrollbar height="300px" class="rounded">
-        <p
-          v-for="item in store.searched"
-          :key="item"
-          @click="router.push(`/blog/${item?.id}`)"
-          class="pl-2 scrollbar-demo-item bg-[#1E90FF] cursor-pointer hover:bg-[#87CEFA] transition-all"
+        <!-- Search result -->
+        <div
+          v-if="isopen"
+          class="absolute w-[290px] text-white top-[35px] left-[0%] searchresultmobile"
         >
-          {{ item.title }}
-        </p>
-      </el-scrollbar>
+          <el-scrollbar height="300px" class="rounded">
+            <p
+              v-for="item in store.searched"
+              :key="item"
+              @click="router.push(`/blog/${item?.id}`)"
+              class="pl-2 scrollbar-demo-item bg-[#1E90FF] cursor-pointer hover:bg-[#87CEFA] transition-all"
+            >
+              {{ item.title }}
+            </p>
+          </el-scrollbar>
+        </div>
+      </div>
+      <el-button
+        class="hidden categorymobile"
+        type="primary"
+        @click="router.push({ name: 'category' })"
+      >
+        <el-icon class="mr-0.5 cat-icon"><Menu /></el-icon>
+        {{ $t("categories") }}
+      </el-button>
     </div>
   </div>
 </template>
@@ -123,6 +160,10 @@ onMounted(() => {
   width: 300px;
 }
 
+.searchinputmobile {
+  width: 200px;
+}
+
 .navbar-nav {
   display: flex;
   align-items: center;
@@ -159,6 +200,60 @@ onMounted(() => {
         border-top: 1px solid #e5e5e5;
       }
     }
+  }
+}
+
+@media (max-width: 900px) {
+  #searchdesktop {
+    display: none;
+  }
+
+  #searchmobile {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .categorydesktop {
+    display: none;
+  }
+}
+
+@media (max-width: 500px) {
+  .logotext {
+    font-size: 24px;
+  }
+
+  .categorymobile {
+    display: inline;
+    font-size: 12px;
+  }
+
+  #qidirishmobile {
+    font-size: 12px;
+  }
+
+  .searchresultmobile {
+    width: 200px;
+  }
+}
+
+@media (max-width: 420px) {
+  .cat-icon {
+    display: none;
+  }
+
+  .searchinputmobile,
+  .searchresultmobile {
+    width: 170px;
+  }
+}
+
+@media (max-width: 390px) {
+  .searchresultmobile,
+  .searchinputmobile,
+  .categorymobile,
+  #qidirishmobile {
+    font-size: 11px;
   }
 }
 </style>
