@@ -1,6 +1,6 @@
 <template>
   <div>
-    <MainHeader />
+    <Header />
     <Organamiz />
     <Kontent />
     <Yangimavzu />
@@ -10,7 +10,7 @@
 </template>
 
 <script setup>
-import MainHeader from "../components/Landing/MainHeader.vue";
+import Header from "../components/Landing/Header.vue";
 import Organamiz from "../components/Landing/Organamiz.vue";
 import Yangimavzu from "../components/Landing/Yangimavzu.vue";
 import Kontent from "../components/Landing/Kontent.vue";

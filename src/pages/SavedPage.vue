@@ -1,6 +1,6 @@
 <template>
   <div>
-    <MainHeader />
+    <Header />
     <div v-loading="loading" id="second" class="`ml-10 w-[95%] mt-7">
       <div id="s-div" v-if="isRight" class="flex flex-col gap-3">
         <SavedBlog :data="store.saves" />
@@ -21,7 +21,7 @@
 
 <script setup>
 import { onMounted, ref, watch } from "vue";
-import MainHeader from "../components/Landing/MainHeader.vue";
+import Header from "../components/Landing/Header.vue";
 import Footer from "../components/Landing/Footer.vue";
 import SavedBlog from "../components/ui/SavedBlog.vue";
 import { useSavedStore } from "../stores/saved";

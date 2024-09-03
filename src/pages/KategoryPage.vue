@@ -1,5 +1,5 @@
 <template>
-  <MainHeader />
+  <Header />
   <BoshMenuGa />
   <Top5Blog />
   <ForYou />
@@ -7,7 +7,7 @@
 </template>
 
 <script setup>
-import MainHeader from "../components/Landing/MainHeader.vue";
+import Header from "../components/Landing/Header.vue";
 import BoshMenuGa from "../components/Category/BoshMenuGa.vue";
 import Top5Blog from "../components/Category/Top5Blog.vue";
 import ForYou from "../components/Category/ForYou.vue";

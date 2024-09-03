@@ -11,7 +11,7 @@
           v-model="search"
           :placeholder="$t('squirrelbee')"
           class="searchinput"
-        />
+        />  
         <el-button id="qidirish" type="primary">{{ $t("search") }}</el-button>
 
         <!-- Search result -->

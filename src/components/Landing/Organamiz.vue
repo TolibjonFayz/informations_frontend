@@ -1,27 +1,22 @@
 <template>
-  <div id="main" class="flex px-[160px] mt-20">
-    <div id="main-in" class="first w-[50%] flex flex-col justify-between">
-      <h1 id="dunyo" class="font-['Montserrat'] text-[52px] font-medium">
-        Dunyodagi barcha bilimlarni o'rganamiz!
+  <div id="main" class="mycontainer">
+    <div class="left">
+      <h1 class="left-title">
+        {{ $t("organamiztitle1") }}
+        <br />
+        <br />
+        {{ $t("organamiztitle2") }}
       </h1>
-      <h2 id="boshladik" class="font-['Montserrat'] text-[24px]">
-        Boshladikmi 🙂 ?
+
+      <h2 class="left-smalltitle">
+        {{ $t("organamiztitle3") }}
       </h2>
-      <el-button
-        id="qidirish"
-        type="primary"
-        class="text-white px-4 py-2 w-40 mt-10 font-['Montserrat']"
-        @click="pushers()"
-        >Qidirish</el-button
-      >
+      <el-button class="left-btn" type="primary" @click="pushers()">
+        {{ $t("startsearching") }}
+      </el-button>
     </div>
-    <div class="second w-[50%] flex justify-center items-center">
-      <img
-        id="image"
-        src="../../assets/firstimg.jpg"
-        alt="Library"
-        class="w-80 rounded ml-20"
-      />
+    <div class="right">
+      <img class="right-image" src="../../assets/firstimg1.jpg" alt="Library" />
     </div>
   </div>
 </template>
@@ -37,46 +32,54 @@ const pushers = () => {
 </script>
 
 <style lang="scss" scoped>
-#qidirish {
-  padding: 15px 50px;
-}
-@media screen and (max-width: 1000px) {
-  #main {
-    padding-left: 50px;
-    padding-right: 50px;
-  }
+#main {
+  display: flex;
+  margin-top: 50px;
+  gap: 50px;
 }
 
-@media screen and (max-width: 800px) {
-  #dunyo {
-    font-size: 40px;
-  }
-  #boshladik {
-    font-size: 16px;
-  }
-  #qidirish {
-    font-size: 12px;
-  }
-}
+.left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
 
-@media screen and (max-width: 600px) {
-  #main-in {
-    width: 70%;
+  &-title {
+    font-size: 24px;
+    font-weight: 500;
   }
-  .second {
-    width: 30%;
-  }
-  #dunyo {
-    font-size: 30px;
-  }
-  #boshladik {
-    font-size: 14px;
-  }
-  #qidirish {
-    font-size: 12px;
-  }
-  #image {
+
+  &-btn {
     width: 200px;
+  }
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  width: 100%;
+
+  &-image {
+    border-radius: 5px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .left {
+    align-items: center;
+    text-align: center;
+    margin: 0 5px;
+  }
+  .right {
+    display: none;
+  }
+}
+
+@media (max-width: 500px) {
+  .left {
+    &-title {
+      font-size: 20px;
+    }
   }
 }
 </style>

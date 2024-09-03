@@ -1,6 +1,6 @@
 <template>
   <div id="main" v-if="store.blog">
-    <MainHeader />
+    <Header />
     <div
       v-loading="loading"
       id="main-in"
@@ -69,7 +69,7 @@
 </template>
 
 <script setup>
-import MainHeader from "../components/Landing/MainHeader.vue";
+import Header from "../components/Landing/Header.vue";
 import { onMounted, ref } from "vue";
 import { useBlogStore } from "../stores/blog";
 import Footer from "../components/Landing/Footer.vue";
